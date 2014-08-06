@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK"?>
+<ROOT>
+	<DATABASE db-charset="GBK" app-charset="GBK">
+	  <NAME>sample</NAME>
+      <CONNECT_CHANNEL>jdbc</CONNECT_CHANNEL><!-- [jdbc,appserver,jdls] -->
+      <DRIVER>oracle.jdbc.driver.OracleDriver</DRIVER>
+      <URL>jdbc:oracle:thin:@192.168.70.199:1521:other</URL>
+      <USER>newbie</USER>
+      <PASSWORD>newbie</PASSWORD>
+      <DATA_SOURCE>productDS</DATA_SOURCE>
+      <JDLS_CONNECTION_POOL>123</JDLS_CONNECTION_POOL>
+      <DESCRIPTION>sample db</DESCRIPTION>
+	</DATABASE>
+	
+</ROOT>

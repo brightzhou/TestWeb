@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<ROOT>
+	<TASK>
+		<NAME>selectUserInfo</NAME><!-- unique -->
+		<DATABASE_NAME>sample</DATABASE_NAME>
+		<TYPE>select</TYPE><!-- select.insert.delete.update -->
+		<BATCH>false</BATCH>
+		<TRANSACTION>false</TRANSACTION>
+		<EXECUTOR></EXECUTOR>
+		<DESCRIPTION>用户信息查看测试</DESCRIPTION>
+		<SQL>
+			<NAME>selectUserInfo</NAME>
+			<TYPE>query</TYPE><!-- query.update.procedure -->
+			<CLAUSE>
+				select * from userinfo where userid=?
+			</CLAUSE>
+			<PARAMETER_TYPE_LIST></PARAMETER_TYPE_LIST>
+			<DESCRIPTION>查看测试</DESCRIPTION>
+		</SQL>
+	</TASK>
+	<TASK>
+		<NAME>insertUserInfo</NAME>
+		<DATABASE_NAME>sample</DATABASE_NAME>
+		<TYPE>update</TYPE>
+		<BATCH>false</BATCH>
+		<TRANSACTION>false</TRANSACTION>
+		<EXECUTOR></EXECUTOR>
+		<DESCRIPTION>用户信息插入测试</DESCRIPTION>
+		<SQL>
+			<NAME>insertUserInfo</NAME>
+			<TYPE>update</TYPE><!-- query.update.procedure -->
+			<CLAUSE>
+				insert into userinfo
+				(userid,username,age,birthday,remark,gender,marital,department) 
+				values (?,?,?,to_date(?,'YYYY-MM-DD'),?,?,?,?)
+			</CLAUSE>
+			<PARAMETER_TYPE_LIST></PARAMETER_TYPE_LIST>
+			<DESCRIPTION>插入测试</DESCRIPTION>
+		</SQL>
+	</TASK>
+
+	<TASK>
+		<NAME>deleteUserInfo</NAME>
+		<DATABASE_NAME>sample</DATABASE_NAME>
+		<TYPE>delete</TYPE>
+		<BATCH>false</BATCH>
+		<TRANSACTION>false</TRANSACTION>
+		<EXECUTOR></EXECUTOR>
+		<DESCRIPTION>用户信息删除测试</DESCRIPTION>
+		<SQL>
+			<NAME>deleteUserInfo</NAME>
+			<TYPE>update</TYPE><!-- query.update.procedure -->
+			<CLAUSE>delete from userinfo where userid=?</CLAUSE>
+			<PARAMETER_TYPE_LIST></PARAMETER_TYPE_LIST>
+			<DESCRIPTION>删除测试</DESCRIPTION>
+		</SQL>
+	</TASK>
+
+
+	<TASK>
+		<NAME>updateUserInfo</NAME>
+		<DATABASE_NAME>sample</DATABASE_NAME>
+		<TYPE>update</TYPE>
+		<BATCH>false</BATCH>
+		<TRANSACTION>false</TRANSACTION>
+		<EXECUTOR></EXECUTOR>
+		<DESCRIPTION>用户信息修改测试</DESCRIPTION>
+		<SQL>
+			<NAME>updateUserInfo</NAME>
+			<TYPE>update</TYPE><!-- query.update.procedure -->
+			<CLAUSE>update userinfo set username=?,age=?,birthday=to_date(?,'YYYY-MM-DD'),remark=?,gender=?,marital=?,department=? where userid=?</CLAUSE>
+			<PARAMETER_TYPE_LIST></PARAMETER_TYPE_LIST>
+			<DESCRIPTION>修改测试</DESCRIPTION>
+		</SQL>
+	</TASK>
+
+</ROOT>

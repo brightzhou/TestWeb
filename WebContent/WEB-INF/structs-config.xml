@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="loginActionForm" type="demo.webapp.form.LoginActionForm">
+		</form-bean>
+		<form-bean name="userInfoForm" type="demo.webapp.form.UserInfoForm">
+		</form-bean>
+		<form-bean name="userInfoSuiForm" type="demo.webapp.form.UserInfoSuiForm">
+		</form-bean>
+	</form-beans>
+	<action-mappings>
+		<action path="/login" type="demo.webapp.action.LoginAction"
+			name="loginActionForm" scope="request">
+			<forward name="success" path="/loginSuccess.jsp" />
+			<forward name="error" path="/loginError.jsp" />
+		</action>
+		<action path="/userinfoAction" type="demo.webapp.action.UserInfoAction"
+			name="userInfoForm" validate="false" scope="request" parameter="method">
+			<forward name="success" path="/loginSuccess.jsp" />
+			<!-- <forward name="insert" path="/loginError.jsp" />
+			<forward name="delete" path="/loginSuccess.jsp" />
+			<forward name="update" path="/loginError.jsp" /> -->
+		</action>
+		<action path="/userinfoSuiAction" type="demo.webapp.action.UserInfoSuiAction"
+			name="userInfoSuiForm" validate="false" scope="request" parameter="method">
+			<forward name="success" path="/loginSuccess.jsp" />
+		</action>
+	</action-mappings>
+</struts-config>

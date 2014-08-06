@@ -1,0 +1,90 @@
+﻿
+mini.TooltipObject = null;
+
+
+
+
+mini.Tooltip = function () {
+
+    this.tipId = "mini-tooltip";
+    this._init();
+}
+mini.Tooltip.prototype = {
+    attr: "value",
+    /**
+     * 分隔符
+     * @type String
+     * @author 赵美丹
+     */
+    delimiter: "<br/>",
+
+    /**
+     * 显示与隐藏的滞后时间。
+     * @type Int
+     * @default 500
+     */
+    timeout: 500,
+    tipMinLength: 1,
+
+    _eleclass: 'mini-tooltip-container',
+
+    /**
+     * 创建组件最外层HTML结构，并绑定给组件实例。
+     * @default
+     * @private
+     */
+    _init: function () {
+        this.$tip = $('#' + this.tipId);
+        if (this.$tip.length == 0) {
+            this.$tip = $('<div class="mini-tooltip-colortip" id="' + this.tipId + '">'
+                + '<div class="mini-tooltip-content" id="' + this.tipId + '_content"></div>'
+                + '<div class="mini-tooltip-pointy"><span class="mini-tooltip-pointytipshadow"></span><span class="mini-tooltip-pointytip"></span></div>'
+                + '</div>');
+            $('body').append(this.$tip[0]);
+        }
+        this.$tipContent = $('#' + this.tipId + '_content');
+    },
+
+    show: function (el, delimiter) {
+
+        var text = $(el).attr(this.attr);
+        text = text.split(delimiter).join(this.delimiter);
+
+        // if (!text || this.source.clientWidth >= this.source.scrollWidth)
+        //     return;
+        var box = mini.getBox(el);
+        this.$tipContent.html(text);
+        this.$tipContent.height("auto");
+        var width = Math.max(parseInt(el.clientWidth) + 10, 200);
+        this.$tip.css({ left: (box.x) + 'px', top: (box.y + box.height + 7) + 'px', width: width + "px" }).show();
+        this.$tip.width(this.$tipContent.width());
+        if (this.$tip.height() > 200) {
+            this.$tipContent.height(188);
+        }
+        $('#' + this.tipId).show();
+        //解决输入框光标穿透tooltip的问题 赵美丹 2013-03-12
+        this.$tip.focus();
+
+    },
+    hide: function (e) {
+        var x = e.pageX;//鼠标横坐标
+        var left = this.$tip.position().left + 9;
+        var right = this.$tip.position().left + 377;
+
+        if (left < x && x < right)
+            return;
+        this.$tip.hide();
+
+    }
+
+}
+mini.Tooltip.show = function (el, delimiter) {
+    if (mini.TooltipObject == null)
+        mini.TooltipObject = new mini.Tooltip();
+    mini.TooltipObject.show(el, delimiter);
+
+}
+mini.Tooltip.hide = function (e) {
+    if (mini.TooltipObject)
+        mini.TooltipObject.hide(e);
+}

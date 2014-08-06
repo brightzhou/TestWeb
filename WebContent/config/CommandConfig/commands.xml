@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<commandConfig>
+	<commands>
+      <commandMapping name="ETAXCommand" 
+      type="cn.com.jdls.foundation.architectures.command.commands.ECommand"
+		target="localETAX" />
+   </commands>
+</commandConfig>

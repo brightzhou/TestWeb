@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<commandConfig>
+	<target name="localETAX">
+			<tfield name="type">cn.com.jdls.foundation.architectures.command.targets.LocalTarget</tfield>
+			
+		</target>
+</commandConfig>

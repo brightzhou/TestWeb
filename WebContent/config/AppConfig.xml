@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GBK"?>
+<root>
+	<app-param>
+		<param-name>TestSystem</param-name>
+		<param-value>001</param-value>
+		<param-desc></param-desc>
+	</app-param>
+	<debug>true</debug>
+	<loader>
+		<name>LogLoader</name>
+		<type>cn.com.jdls.foundation.startup.LogLoader</type>
+		<loader-param>
+			<param-name>LogConfigFileName</param-name>
+			<param-value>log4j.properties</param-value>
+		</loader-param>
+		<description>Log4j初始化</description>
+	</loader>
+	<loader>
+		<name>DaoLoader</name>
+		<type>cn.com.jdls.foundation.startup.DaoLoader</type>
+		<loader-param>
+			<param-name>DaoConfigFilePath</param-name>
+			<param-value>DAOConfig/</param-value>
+		</loader-param>
+		<description>Dao架构初始化</description>
+	</loader>
+
+	<loader>
+		<name>CommandLoader</name>
+		<type>cn.com.jdls.foundation.architectures.command.startup.CommandLoader
+		</type>
+		<loader-param>
+			<param-name>CommandConfigFileName</param-name>
+			<param-value>CommandConfig</param-value>
+		</loader-param>
+		<enable>true</enable>
+		<description>Command架构初始化</description>
+	</loader>
+
+</root>

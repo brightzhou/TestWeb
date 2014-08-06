@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="GBK"?>
+<commandConfig>
+	<actions>
+		<mappingAction name="insertUserInfoCmd" command="ETAXCommand"
+			receiver="demo.app.receivers.UserInfoQueryReceiver" method="insertCmd" />
+
+		<mappingAction name="deleteUserInfoCmd" command="ETAXCommand"
+			receiver="demo.app.receivers.UserInfoQueryReceiver" method="deleteCmd" />
+
+		<mappingAction name="updateUserInfoCmd" command="ETAXCommand"
+			receiver="demo.app.receivers.UserInfoQueryReceiver" method="updateCmd" />
+
+		<mappingAction name="selectUserInfoCmd" command="ETAXCommand"
+			receiver="demo.app.receivers.UserInfoQueryReceiver" method="selectCmd" />
+
+		<mappingAction name="insertUserInfoSuiCmd" command="ETAXCommand"
+			receiver="demo.app.receivers.UserInfoQuerySuiReceiver" method="insertCmd" />
+			
+		<mappingAction name="deleteUserInfoSuiCmd" command="ETAXCommand"
+			receiver="demo.app.receivers.UserInfoQuerySuiReceiver" method="deleteCmd" />
+
+		<mappingAction name="updateUserInfoSuiCmd" command="ETAXCommand"
+			receiver="demo.app.receivers.UserInfoQuerySuiReceiver" method="updateCmd" />
+
+		<mappingAction name="selectUserInfoSuiCmd" command="ETAXCommand"
+			receiver="demo.app.receivers.UserInfoQuerySuiReceiver" method="selectCmd" />
+			
+			<mappingAction name="selectUserInfoAllSuiCmd" command="ETAXCommand"
+			receiver="demo.app.receivers.UserInfoQuerySuiReceiver" method="selectAllCmd" />
+	</actions>
+</commandConfig>

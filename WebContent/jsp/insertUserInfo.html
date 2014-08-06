@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!--jQuery js-->
+<script src="../scripts/sui/base/jquery-1.6.2.min.js"
+	type="text/javascript"></script>
+<!--MiniUI-->
+<link href="../scripts/sui/themes/default/miniui.css" rel="stylesheet"
+	type="text/css" />
+<link href="../scripts/sui/themes/default/plugin.css" rel="stylesheet"
+	type="text/css" />
+<link href="../scripts/sui/themes/icons.css" rel="stylesheet"
+	type="text/css" />
+<script src="../scripts/sui/mini-all-min.js" type="text/javascript"></script>
+<title>添加用户信息</title>
+</head>
+
+<body>
+	<h1>添加用户信息</h1>
+	<div id="form1">
+		<input name="id" class="mini-hidden" />
+
+		<table>
+			<tr>
+				<td><label for="userID$text">用户ID:</label></td>
+				<td><input id="userID" name="userID" class="mini-textbox"
+					 /></td>
+			</tr>
+			<tr>
+				<td><label for="userName$text">用户名字:</label></td>
+				<td><input id="userName" name="userName" class="mini-textbox"
+					/></td>
+			</tr>
+			<tr>
+				<td><label for="age$text">年龄:</label></td>
+				<td><input id="age" name="age" class="mini-textbox"
+					/></td>
+			</tr>
+			<tr>
+				<td><label for="birthday$text">生日:</label></td>
+				<td><input id="birthday" name="birthday"
+					class="mini-datepicker" value="1980-10-10" /></td>
+			</tr>
+			<tr>
+				<td><label for="remark$text">备注:</label></td>
+				<td><input id="remark" name="remark" class="mini-textarea"
+					/></td>
+			</tr>
+			<tr>
+				<td><label for="gender$text">性别:</label></td>
+				<td><input id="gender" name="gender" class="mini-textbox"
+					/></td>
+			</tr>
+			<tr>
+				<td>婚否:</td>
+				<td><input name="marital" class="mini-checkbox" value="Y"
+					trueValue="Y" falseValue="N" /></td>
+			</tr>
+			<tr>
+				<td>部门:</td>
+				<td><input name="department" showNullItem="true"
+					class="mini-combobox" url="../data/department.txt" value="xxb"
+					textField="text" valueField="id" /> <br /> <span
+					id="combobox_error" style="color: Red;"></span></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input value="新增" type="button" onclick="submitForm()" /><input
+					value="清空" type="button" onclick="clearForm()" /></td>
+			</tr>
+		</table>
+	</div>
+	<script type="text/javascript">
+		mini.parse();
+		var form = new mini.Form("#form1");
+		
+		//提交
+		function submitForm() {
+			/* if (!validate()) { // 先校验输入内容
+				return false;
+			} else { */
+				//提交表单数据
+				var data = form.getData(); //获取表单多个控件的数据
+				var json = mini.encode([data]); //序列化成JSON
+				$.ajax({
+					url : "../userinfoSuiAction.ado?method=insert",
+					type : "post",
+					data : {submitData : json},
+					success : function(text) {
+						alert("提交成功，返回结果:" + text);
+					}
+				});
+			/* } */
+
+		}
+		// 校验
+		function validate() {
+			var isTrue = true;
+			var userID = mini.get("userID").value;
+			var age = mini.get("age").value;
+			var birthday = mini.get("birthday").value;
+			var sex = mini.get("sex").value;
+			// 如果用户ID为空
+			if (VerifyUtil.isEmpty(userID)) {
+				alert("用户ID不能为空。");
+				return false;
+			}
+			return isTrue;
+		}
+		//清空
+		function clearForm() {
+			//清空表单数据
+			form.clear();
+		}
+		
+		//关闭窗口
+		function closeWindow(action) {            
+            if (action == "close" && form.isChanged()) {
+                if (confirm("数据被修改了，是否先保存？")) {
+                    return false;
+                }
+            }
+            if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+            else window.close();            
+        }
+		//取消
+		function onCancel(e) {
+			closeWindow("cancel");
+        }
+		
+	</script>
+</body>
+
+</html>
